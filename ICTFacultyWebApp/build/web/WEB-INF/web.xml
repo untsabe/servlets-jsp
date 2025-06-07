@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>AddProjectServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.AddProjectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProjectServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.UpdateProjectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StartSessionServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.StartSessionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAllServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.ViewAllServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewStatsServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.ViewStatsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddProjectServlet</servlet-name>
+        <url-pattern>/AddProjectServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProjectServlet</servlet-name>
+        <url-pattern>/UpdateProjectServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StartSessionServlet</servlet-name>
+        <url-pattern>/StartSessionServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAllServlet</servlet-name>
+        <url-pattern>/ViewAllServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewStatsServlet</servlet-name>
+        <url-pattern>/ViewStatsServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet.do</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <security-constraint>
+        <display-name>industryConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>industryResource</web-resource-name>
+            <description>industry resources</description>
+            <url-pattern>/addProject.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>industry authentication</description>
+            <role-name>industry</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>studentConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>studentResource</web-resource-name>
+            <description>student resource</description>
+            <url-pattern>/menu.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>view projects</description>
+            <role-name>student</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
+        <form-login-config>
+            <form-login-page>/Login.jsp</form-login-page>
+            <form-error-page>/login_error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>industry wil add projects and edit project</description>
+        <role-name>industry</role-name>
+    </security-role>
+    <security-role>
+        <description>view projects available</description>
+        <role-name>student</role-name>
+    </security-role>
+</web-app>
